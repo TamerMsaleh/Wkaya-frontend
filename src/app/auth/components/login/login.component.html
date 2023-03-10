@@ -1,124 +1,120 @@
-<nb-layout class="bg-white" windowMode>
-  <nb-layout-column>
-    <div class="container">
-    <div class="row justify-content-md-center">
-      <div class="col-6">
-        <section class="login-form">
-          <div class="text-center">
-            <h1>AVL</h1>
-
+<!-- <nb-layout class="bg-white">
+  <nb-layout-column> -->
+<div class="main-container">
+  <div class="card-container">
+    <p-card>
+      <ng-template pTemplate="header">
+        <div>
+          <h4><b>Wkaya Login</b></h4>
+        </div>
+      </ng-template>
+      <section class="login-form">
+        <form  #form="ngForm" (ngSubmit)="login()" [formGroup]="loginForm" aria-labelledby="title">
+          <div class="form-group form-control-group">
+            <label class="label" for="input-username">Email:</label>
+            <!-- pattern=".+@.+\..+" -->
+            <input
+              nbInput
+              fullWidth
+              name="email"
+              formControlName="email"
+              id="input-username"
+              placeholder="Email"
+              autofocus
+              [status]="
+                loginForm.get('email').dirty
+                  ? loginForm.get('email').invalid
+                    ? 'danger'
+                    : 'primary'
+                  : 'basic'
+              "
+              [required]=""
+              [attr.aria-invalid]="
+                loginForm.get('email').invalid && loginForm.get('email').touched ? true : null
+              "
+            />
+            <ng-container *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched">
+              <p
+                class="caption status-danger"
+                *ngIf="loginForm.get('email').hasError('required')"
+              >
+                Email is required!
+              </p>
+              <p
+                class="caption status-danger"
+                *ngIf="loginForm.get('email').hasError('email')"
+              >
+                Email should be valid!
+              </p>
+            </ng-container>
           </div>
-          <h1 id="title" class="title">Login</h1>
 
+          <div class="form-group form-control-group">
+            <label class="label" for="input-password">Password:</label>
+            <input
+              nbInput
+              fullWidth
+              name="password"
+              type="password"
+              id="input-password"
+              placeholder="Password"
+              formControlName="password"
+              [status]="
+              loginForm.get('password').dirty
+                  ? loginForm.get('password').invalid
+                    ? 'danger'
+                    : 'primary'
+                  : 'basic'
+              "
 
-          <form (ngSubmit)="login()" #form="ngForm" aria-labelledby="title">
-            <div class=" form-group form-control-group">
-              <label class="label" for="input-username">Username:</label>
-              <!-- pattern=".+@.+\..+" -->
-              <input
-                nbInput
-                fullWidth
-                [(ngModel)]="user.username"
-                #username="ngModel"
-                name="username"
-                id="input-username"
-                placeholder="Username"
-                autofocus
-                [status]="
-                  username.dirty ? (username.invalid ? 'danger' : 'primary') : 'basic'
+              [attr.aria-invalid]="
+                loginForm.get('password').invalid && loginForm.get('password').touched ? true : null
+              "
+            />
+            <ng-container *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+              <p
+                class="caption status-danger"
+                *ngIf="loginForm.get('password').hasError('required')"
+              >
+                Password is required!
+              </p>
+              <p
+                class="caption status-danger"
+                *ngIf="
+                loginForm.get('password').errors?.minlength || loginForm.get('password').hasError('maxlength')
                 "
-                [required]=""
-                [attr.aria-invalid]="
-                  username.invalid && username.touched ? true : null
-                "
-              />
-              <ng-container *ngIf="username.invalid && username.touched">
-                <p class="caption status-danger" *ngIf="username.errors['required']">
-                  username is required!
-                </p>
-                <p class="caption status-danger" *ngIf="username.errors['pattern']">
-                  username should be the real one!
-                </p>
-              </ng-container>
-            </div>
+              >
+                Password should contains from
+                {{ minlength }} to
+                {{ maxlength}}
+                characters
+              </p>
+            </ng-container>
+          </div>
 
-            <div class="form-group form-control-group">
-              <label class="label" for="input-password">Password:</label>
-              <input
-                nbInput
-                fullWidth
-                [(ngModel)]="user.password"
-                #password="ngModel"
-                name="password"
-                type="password"
-                id="input-password"
-                placeholder="Password"
-                [status]="
-                  password.dirty
-                    ? password.invalid
-                      ? 'danger'
-                      : 'primary'
-                    : 'basic'
-                "
-                [required]="
-                  getConfigValue('forms.validation.password.required')
-                "
-                [minlength]="
-                  getConfigValue('forms.validation.password.minLength')
-                "
-                [maxlength]="
-                  getConfigValue('forms.validation.password.maxLength')
-                "
-                [attr.aria-invalid]="
-                  password.invalid && password.touched ? true : null
-                "
-              />
-              <ng-container *ngIf="password.invalid && password.touched">
-                <p
-                  class="caption status-danger"
-                  *ngIf="password.errors['required']"
-                >
-                  Password is required!
-                </p>
-                <p
-                  class="caption status-danger"
-                  *ngIf="
-                    password.errors['minlength'] || password.errors['maxlength']
-                  "
-                >
-                  Password should contains from
-                  {{ getConfigValue('forms.validation.password.minLength') }} to
-                  {{ getConfigValue('forms.validation.password.maxLength') }}
-                  characters
-                </p>
-              </ng-container>
-            </div>
-
-            <div class="form-group form-control-group accept-group">
+          <!-- <div class="form-group form-control-group accept-group">
               <nb-checkbox
                 name="rememberMe"
                 [(ngModel)]="user.rememberMe"
                 *ngIf="rememberMe"
                 >Remember me</nb-checkbox
               >
-            </div>
-
+            </div> -->
+          <div class="buttons-container">
             <button
               nbButton
-              fullWidth
               status="primary"
               [disabled]="submitted || !form.valid"
               [class.btn-pulse]="submitted"
             >
               Sign In
             </button>
-          </form>
-        </section>
-        <!-- <section class="policy">
-          <p>This application is complied with HIPAA privacy rules.</p>
-        </section> -->
-      </div>
-      </div>
-    </div>
-  </nb-layout-column>
-</nb-layout>
+          </div>
+        </form>
+      </section>
+    </p-card>
+  </div>
+</div>
+
+<!-- </nb-layout-column>
+</nb-layout> -->

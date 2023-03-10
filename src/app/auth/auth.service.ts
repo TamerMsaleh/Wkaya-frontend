@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import jwt_decode from 'jwt-decode';
-import { environment } from 'src/assets/environments/environment.prod';
 import { HttpService } from '../global-shared/http.service';
 import { TokenService } from '../global-shared/token.service';
 
@@ -13,7 +11,15 @@ export class AuthService {
   constructor(private http: HttpService, private tokenService: TokenService) {}
 
   login(userInfo) {
-    return this.http.post(userInfo, 'auth/login');
+    return this.http.post(userInfo, 'login');
+  }
+
+  signup(userInfo){
+    return this.http.post(userInfo,'signUp');
+  }
+
+  profile(userProfile){
+    return this.http.post(userProfile,'profile');
   }
 
   isAuthenticated() {

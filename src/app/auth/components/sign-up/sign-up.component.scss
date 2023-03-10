@@ -8,11 +8,12 @@
   padding: 12px;
   .card-container {
     width: 600px;
+    height: 100%;
     p-card {
       ::ng-deep {
         .p-card {
-          height: 100%;
           box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+          height: 100%;
           .p-card-header {
             display: flex;
             justify-content: center;

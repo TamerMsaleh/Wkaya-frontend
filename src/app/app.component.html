@@ -1,9 +1,12 @@
-<nb-layout>
-  <nb-layout-header fixed><b>WAKYA</b></nb-layout-header>
+  <nb-layout class="global-container">
+    <nb-layout-header
+      ><wky-header [companyTitle]="'wkaya'"></wky-header
+    ></nb-layout-header>
 
-  <!-- <nb-sidebar>Sidebar Content</nb-sidebar> -->
+    <!-- <nb-sidebar>Sidebar Content</nb-sidebar> -->
 
-  <nb-layout-column>
-    <!-- Page Content <button nbButton>Hello World</button> -->
-  </nb-layout-column>
-</nb-layout>
+    <nb-layout-column>
+      <!-- Page Content <button nbButton>Hello World</button> -->
+      <router-outlet></router-outlet>
+    </nb-layout-column>
+  </nb-layout>

@@ -1,18 +1,17 @@
 import {
-	HttpErrorResponse,
-	HttpEvent,
-	HttpHandler,
-	HttpInterceptor,
-	HttpRequest,
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToasterPosition, ToasterService } from '@avl/shared/toaster.service';
-import { TokenService } from '@avl/shared/token.service';
-import { environment } from '@avl_env/environment';
-import { TranslateService } from '@ngx-translate/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/assets/environments/environment';
+import { ToasterPosition, ToasterService } from '../global-shared/toaster.service';
+import { TokenService } from '../global-shared/token.service';
 import { AuthService } from './auth.service';
 
 /**
@@ -26,7 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
 		private credentials: TokenService,
 		private authService: AuthService,
 		private router: Router,
-		private toastrService: ToasterService
+    private toastrService: ToasterService
 	) {}
 
 	intercept(
@@ -61,23 +60,23 @@ export class AuthInterceptor implements HttpInterceptor {
 		}
 		return next.handle(request).pipe(
 			catchError((error: HttpErrorResponse) => {
-				// let errorMsg = '';
-				// if (error.error instanceof ErrorEvent) {
-				//   console.log('this is client side error');
-				//   errorMsg = `Error: ${error.error.message}`;
-				// }
-				// else {
-				//   console.log('this is server side error');
-				//   errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
-				// }
+				let errorMsg = '';
+				if (error.error instanceof ErrorEvent) {
+				  console.log('this is client side error');
+				  errorMsg = `Error: ${error.error.message}`;
+				}
+				else {
+				  console.log('this is server side error');
+				  errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
+				}
 				if (error.error instanceof ErrorEvent) {
 					// console.log('this is client side error');
 				} else if (error.status == 401) {
-					this.authService.removeCrossToken();
+					// this.authService.removeCrossToken();
 				} else if (error.status == 500) {
-					// this.router.navigate(['errors'], {
-					// 	state: { status: 500 },
-					// });
+					this.router.navigate(['errors'], {
+						state: { status: 500 },
+					});
 					this.toastrService.makeToast(
 						'error',
 						'Error',
@@ -103,9 +102,9 @@ export class AuthInterceptor implements HttpInterceptor {
 						}
 					);
 				} else {
-					// console.log('something went wrong');
+					console.log('something went wrong');
 				}
-				return throwError(error);
+				return throwError((error)=> new Error(error));
 			})
 		);
 	}

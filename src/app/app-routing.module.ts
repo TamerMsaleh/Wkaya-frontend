@@ -1,5 +1,5 @@
 import { inject, NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { LoginGuard } from './auth/login.guard';
 
@@ -16,9 +16,11 @@ const routes: Routes = [
     canLoad: [() => inject(LoginGuard).canLoad()],
   },
 ];
-
+const config: ExtraOptions = {
+	useHash: false,
+};
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,config)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

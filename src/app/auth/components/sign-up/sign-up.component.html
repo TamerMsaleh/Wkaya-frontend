@@ -1,0 +1,122 @@
+<!-- <nb-layout class="bg-white">
+  <nb-layout-column> -->
+<div class="main-container">
+  <div class="card-container">
+    <p-card>
+      <ng-template pTemplate="header">
+        <div>
+          <h4><b>Wkaya Sign Up</b></h4>
+        </div>
+      </ng-template>
+      <section>
+        <form
+          (ngSubmit)="signup()"
+          #form="ngForm"
+          [formGroup]="signUpForm"
+          aria-labelledby="title"
+        >
+          <div class="form-group form-control-group">
+            <label class="label" for="input-password">Name:</label>
+            <input
+              nbInput
+              fullWidth
+              formControlName="name"
+              name="name"
+              type="name"
+              id="input-name"
+              placeholder="Name"
+              [status]="
+                signUpForm.get('name').dirty
+                  ? signUpForm.get('name').invalid
+                    ? 'danger'
+                    : 'primary'
+                  : 'basic'
+              "
+              [required]="signUpForm.get('name').hasError('required')"
+              [attr.aria-invalid]="
+                signUpForm.get('name').invalid && signUpForm.get('name').touched
+                  ? true
+                  : null
+              "
+            />
+            <ng-container
+              *ngIf="
+                signUpForm.get('name').invalid && signUpForm.get('name').touched
+              "
+            >
+              <p
+                class="caption status-danger"
+                *ngIf="signUpForm.get('name').hasError('required')"
+              >
+                Name is required!
+              </p>
+            </ng-container>
+          </div>
+          <div class="form-group form-control-group">
+            <label class="label" for="input-username">Email:</label>
+            <!-- pattern=".+@.+\..+" -->
+            <input
+              nbInput
+              fullWidth
+              name="email"
+              id="input-username"
+              placeholder="Email"
+              autofocus
+              formControlName="email"
+              [status]="
+                signUpForm.get('email').dirty
+                  ? signUpForm.get('email').invalid
+                    ? 'danger'
+                    : 'primary'
+                  : 'basic'
+              "
+              [required]=""
+              [attr.aria-invalid]="
+                signUpForm.get('email').invalid &&
+                signUpForm.get('email').touched
+                  ? true
+                  : null
+              "
+            />
+            <ng-container
+              *ngIf="
+                signUpForm.get('email').invalid &&
+                signUpForm.get('email').touched
+              "
+            >
+              <p
+                class="caption status-danger"
+                *ngIf="signUpForm.get('email').hasError('email')"
+              >
+                Email is required!
+              </p>
+              <p
+                class="caption status-danger"
+                *ngIf="signUpForm.get('email').hasError('email')"
+              >
+                Email should be valid!
+              </p>
+            </ng-container>
+          </div>
+
+          <!-- <div class="form-group form-control-group accept-group">
+                  <nb-checkbox
+                    name="rememberMe"
+                    [(ngModel)]="user.rememberMe"
+                    *ngIf="rememberMe"
+                    >Remember me</nb-checkbox
+                  >
+                </div> -->
+          <div class="buttons-container">
+            <button nbButton status="primary" [disabled]="!form.valid">
+              Sign Up
+            </button>
+          </div>
+        </form>
+      </section>
+    </p-card>
+  </div>
+</div>
+
+<!-- </nb-layout-column>
+    </nb-layout> -->

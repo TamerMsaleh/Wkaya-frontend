@@ -1,0 +1,260 @@
+<!-- <nb-layout class="bg-white">
+  <nb-layout-column> -->
+<div class="main-container">
+  <div class="card-container">
+    <p-card>
+      <ng-template pTemplate="header">
+        <div>
+          <h4><b>Wkaya Sign Up</b></h4>
+        </div>
+      </ng-template>
+      <section>
+        <form
+          (ngSubmit)="setProfile()"
+          #form="ngForm"
+          [formGroup]="profileForm"
+          aria-labelledby="title"
+        >
+          <div class="wrapper">
+            <div class="form-group form-control-group">
+              <label class="label" for="input-password">Name:</label>
+              <input
+                nbInput
+                fullWidth
+                formControlName="name"
+                name="name"
+                type="name"
+                id="input-name"
+                placeholder="Name"
+                [status]="
+                  profileForm.get('name').dirty
+                    ? profileForm.get('name').invalid
+                      ? 'danger'
+                      : 'primary'
+                    : 'basic'
+                "
+                [required]="profileForm.get('name').hasError('required')"
+                [attr.aria-invalid]="
+                  profileForm.get('name').invalid &&
+                  profileForm.get('name').touched
+                    ? true
+                    : null
+                "
+              />
+              <ng-container
+                *ngIf="
+                  profileForm.get('name').invalid &&
+                  profileForm.get('name').touched
+                "
+              >
+                <pre
+                  class="caption status-danger"
+                  *ngIf="profileForm.get('name').hasError('required')"
+                >
+                  Name is required!
+                </pre>
+              </ng-container>
+            </div>
+            <div class="form-group form-control-group">
+              <label class="label" for="input-username">Email:</label>
+              <!-- pattern=".+@.+\..+" -->
+              <input
+                nbInput
+                fullWidth
+                name="email"
+                id="input-username"
+                placeholder="Email"
+                autofocus
+                formControlName="email"
+                [status]="
+                  profileForm.get('email').dirty
+                    ? profileForm.get('email').invalid
+                      ? 'danger'
+                      : 'primary'
+                    : 'basic'
+                "
+                [required]=""
+                [attr.aria-invalid]="
+                  profileForm.get('email').invalid &&
+                  profileForm.get('email').touched
+                    ? true
+                    : null
+                "
+              />
+              <ng-container
+                *ngIf="
+                  profileForm.get('email').invalid &&
+                  profileForm.get('email').touched
+                "
+              >
+                <pre
+                  class="caption status-danger"
+                  *ngIf="profileForm.get('email').hasError('required')"
+                >
+                  Email is required!
+                </pre>
+                <pre
+                  class="caption status-danger"
+                  *ngIf="profileForm.get('email').hasError('email')"
+                >
+                  Email should be valid!
+                </pre>
+              </ng-container>
+            </div>
+          </div>
+          <div class="wrapper">
+            <div class="form-group form-control-group">
+              <label class="label" for="input-username">Date Of Birth:</label>
+              <!-- pattern=".+@.+\..+" -->
+              <input
+                nbInput
+                fullWidth
+                name="birthDate"
+                type="date"
+                id="input-username"
+                placeholder="Birth Date"
+                autofocus
+                formControlName="birthDate"
+                [status]="
+                  profileForm.get('birthDate').dirty
+                    ? profileForm.get('birthDate').invalid
+                      ? 'danger'
+                      : 'primary'
+                    : 'basic'
+                "
+                [required]=""
+                [attr.aria-invalid]="
+                  profileForm.get('birthDate').invalid &&
+                  profileForm.get('birthDate').touched
+                    ? true
+                    : null
+                "
+              />
+              <ng-container
+                *ngIf="
+                  profileForm.get('birthDate').invalid &&
+                  profileForm.get('birthDate').touched
+                "
+              >
+                <p
+                  class="caption status-danger"
+                  *ngIf="profileForm.get('birthDate').hasError('required')"
+                >
+                  birthDate is required!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="wrapper c3">
+            <div class="form-group form-control-group">
+              <label class="label" for="input-username">Gender:</label>
+
+              <ng-container
+                *ngIf="
+                  profileForm.get('gender').invalid &&
+                  profileForm.get('gender').touched
+                "
+              >
+                <pre
+                  class="caption status-danger"
+                  *ngIf="profileForm.get('gender').hasError('required')"
+                >
+                  Gender is required!
+                </pre>
+              </ng-container>
+            </div>
+            <div class="form-group form-control-group">
+              <label class="label" for="input-height">Height:</label>
+              <input
+                nbInput
+                fullWidth
+                name="height"
+                type="text"
+                id="input-height"
+                placeholder="Height"
+                autofocus
+                formControlName="height"
+                [status]="
+                  profileForm.get('height').dirty
+                    ? profileForm.get('height').invalid
+                      ? 'danger'
+                      : 'primary'
+                    : 'basic'
+                "
+                [required]=""
+                [attr.aria-invalid]="
+                  profileForm.get('height').invalid &&
+                  profileForm.get('height').touched
+                    ? true
+                    : null
+                "
+              />
+              <ng-container
+                *ngIf="
+                  profileForm.get('height').invalid &&
+                  profileForm.get('height').touched
+                "
+              >
+                <pre
+                  class="caption status-danger"
+                  *ngIf="profileForm.get('height').hasError('required')"
+                >
+                  Height is required!
+                </pre>
+              </ng-container>
+            </div>
+            <div class="form-group form-control-group">
+              <label class="label" for="input-weight">Weight:</label>
+              <input
+                nbInput
+                fullWidth
+                name="weight"
+                id="input-weight"
+                placeholder="weight"
+                autofocus
+                formControlName="weight"
+                [status]="
+                  profileForm.get('weight')?.dirty
+                    ? profileForm.get('weight').invalid
+                      ? 'danger'
+                      : 'primary'
+                    : 'basic'
+                "
+                [required]=""
+                [attr.aria-invalid]="
+                  profileForm.get('weight').invalid &&
+                  profileForm.get('weight').touched
+                    ? true
+                    : null
+                "
+              />
+              <ng-container
+                *ngIf="
+                  profileForm.get('weight').invalid &&
+                  profileForm.get('weight').touched
+                "
+              >
+                <p
+                  class="caption status-danger"
+                  *ngIf="profileForm.get('weight').hasError('required')"
+                >
+                  Weight is required!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="wrapper"></div>
+
+          <div class="buttons-container">
+            <button nbButton status="primary" [disabled]="!form.valid">
+              Set Profile
+            </button>
+          </div>
+        </form>
+      </section>
+    </p-card>
+  </div>
+</div>
+
+<!-- </nb-layout-column>
+        </nb-layout> -->
