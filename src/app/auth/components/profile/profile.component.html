@@ -47,12 +47,12 @@
                   profileForm.get('name').touched
                 "
               >
-                <pre
+                <span
                   class="caption status-danger"
                   *ngIf="profileForm.get('name').hasError('required')"
                 >
                   Name is required!
-                </pre>
+                </span>
               </ng-container>
             </div>
             <div class="form-group form-control-group">
@@ -87,18 +87,18 @@
                   profileForm.get('email').touched
                 "
               >
-                <pre
+                <span
                   class="caption status-danger"
                   *ngIf="profileForm.get('email').hasError('required')"
                 >
                   Email is required!
-                </pre>
-                <pre
+                </span>
+                <span
                   class="caption status-danger"
                   *ngIf="profileForm.get('email').hasError('email')"
                 >
                   Email should be valid!
-                </pre>
+                </span>
               </ng-container>
             </div>
           </div>
@@ -155,12 +155,12 @@
                   profileForm.get('gender').touched
                 "
               >
-                <pre
+                <span
                   class="caption status-danger"
                   *ngIf="profileForm.get('gender').hasError('required')"
                 >
                   Gender is required!
-                </pre>
+                </span>
               </ng-container>
             </div>
             <div class="form-group form-control-group">
@@ -195,12 +195,12 @@
                   profileForm.get('height').touched
                 "
               >
-                <pre
+                <span
                   class="caption status-danger"
                   *ngIf="profileForm.get('height').hasError('required')"
                 >
                   Height is required!
-                </pre>
+                </span>
               </ng-container>
             </div>
             <div class="form-group form-control-group">
