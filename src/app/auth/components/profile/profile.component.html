@@ -15,154 +15,170 @@
           [formGroup]="profileForm"
           aria-labelledby="title"
         >
-          <div class="wrapper">
-            <div class="form-group form-control-group">
-              <label class="label" for="input-password">Name:</label>
-              <input
-                nbInput
-                fullWidth
-                formControlName="name"
-                name="name"
-                type="name"
-                id="input-name"
-                placeholder="Name"
-                [status]="
-                  profileForm.get('name').dirty
-                    ? profileForm.get('name').invalid
-                      ? 'danger'
-                      : 'primary'
-                    : 'basic'
-                "
-                [required]="profileForm.get('name').hasError('required')"
-                [attr.aria-invalid]="
-                  profileForm.get('name').invalid &&
-                  profileForm.get('name').touched
-                    ? true
-                    : null
-                "
-              />
-              <ng-container
-                *ngIf="
-                  profileForm.get('name').invalid &&
-                  profileForm.get('name').touched
-                "
-              >
-                <span
-                  class="caption status-danger"
-                  *ngIf="profileForm.get('name').hasError('required')"
+          <p-steps
+            [model]="wizardItems"
+            [(activeIndex)]="activeIndex"
+            [readonly]="false"
+          ></p-steps>
+          <ng-container *ngIf="activeIndex == 0">
+            <div class="wrapper">
+              <div class="form-group form-control-group">
+                <label class="label" for="input-username">Date Of Birth:</label>
+                <p-calendar
+                  [formControl]="profileForm.get('DOB').get('birthDate')"
+                  [placeholder]="'Date of birth'"
+                  [style]="{ width: '100%' }"
+                  [showIcon]="true"
+                  [appendTo]="'body'"
+                  [touchUI]="true"
+                  [showTime]="false"
+                  [inputStyleClass]="
+                    '[nbInput].shape-rectangle shape-rectangle [nbInput].size-medium size-medium [nbInput].status-basic status-basic'
+                  "
+                  class="[nbInput].shape-rectangle shape-rectangle [nbInput].size-medium size-medium [nbInput].status-basic status-basic"
+                ></p-calendar>
+                <ng-container
+                  *ngIf="
+                    profileForm.get('DOB').get('birthDate').invalid &&
+                    profileForm.get('DOB').get('birthDate').touched
+                  "
                 >
-                  Name is required!
-                </span>
-              </ng-container>
+                  <span
+                    class="caption status-danger"
+                    *ngIf="profileForm.get('DOB').get('birthDate').hasError('required')"
+                  >
+                    Date of birth is required!
+                  </span>
+                </ng-container>
+              </div>
             </div>
+            <div class="wrapper">
+              <div class="form-group form-control-group radio">
+                <label class="label" for="input-username">Gender:</label>
+                <div class="d-flex">
+                  <div class="radio-toolbar">
+                    <div class="form-group form-control-group radio">
+                      <input
+                        type="radio"
+                        id="radio1"
+                        name="gender"
+                        value="M"
+                        checked
+                        [formControl]="profileForm.get('DOB').get('gender')"
+                      />
+                      <label class="male" for="radio1">Male</label>
+                    </div>
+                    <div class="form-group form-control-group radio">
+                      <input
+                        type="radio"
+                        id="radio2"
+                        name="gender"
+                        [formControl]="profileForm.get('DOB').get('gender')"
+                        value="F"
+                      />
+                      <label class="female" for="radio2">Female</label>
+                    </div>
+                  </div>
+                </div>
+                <ng-container
+                  *ngIf="
+                    profileForm.get('DOB').get('gender').invalid &&
+                    profileForm.get('DOB').get('gender').touched
+                  "
+                >
+                  <span
+                    class="caption status-danger"
+                    *ngIf="profileForm.get('DOB').get('gender').hasError('required')"
+                  >
+                    Gender is required!
+                  </span>
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="activeIndex == 1">
             <div class="form-group form-control-group">
-              <label class="label" for="input-username">Email:</label>
-              <!-- pattern=".+@.+\..+" -->
+              <label class="label" for="input-country">Country:</label>
               <input
                 nbInput
                 fullWidth
-                name="email"
-                id="input-username"
-                placeholder="Email"
+                name="country"
+                type="text"
+                id="input-country"
+                placeholder="Country"
                 autofocus
-                formControlName="email"
+                [formControl]="profileForm.get('COUNTRY').get('country')"
                 [status]="
-                  profileForm.get('email').dirty
-                    ? profileForm.get('email').invalid
+                profileForm.get('COUNTRY').get('country').dirty
+                    ? profileForm.get('COUNTRY').get('country').invalid
                       ? 'danger'
                       : 'primary'
                     : 'basic'
                 "
                 [required]=""
                 [attr.aria-invalid]="
-                  profileForm.get('email').invalid &&
-                  profileForm.get('email').touched
+                  profileForm.get('COUNTRY').get('country').invalid &&
+                  profileForm.get('COUNTRY').get('country').touched
                     ? true
                     : null
                 "
               />
               <ng-container
                 *ngIf="
-                  profileForm.get('email').invalid &&
-                  profileForm.get('email').touched
+                  profileForm.get('COUNTRY').get('country').invalid &&
+                  profileForm.get('COUNTRY').get('country').touched
                 "
               >
                 <span
                   class="caption status-danger"
-                  *ngIf="profileForm.get('email').hasError('required')"
+                  *ngIf="profileForm.get('COUNTRY').get('country').hasError('required')"
                 >
-                  Email is required!
-                </span>
-                <span
-                  class="caption status-danger"
-                  *ngIf="profileForm.get('email').hasError('email')"
-                >
-                  Email should be valid!
+                  Country is required!
                 </span>
               </ng-container>
             </div>
-          </div>
-          <div class="wrapper">
             <div class="form-group form-control-group">
-              <label class="label" for="input-username">Date Of Birth:</label>
-              <!-- pattern=".+@.+\..+" -->
+              <label class="label" for="input-city">City:</label>
               <input
                 nbInput
                 fullWidth
-                name="birthDate"
-                type="date"
-                id="input-username"
-                placeholder="Birth Date"
+                name="city"
+                type="text"
+                id="input-city"
+                placeholder="City"
                 autofocus
-                formControlName="birthDate"
+                [formControl]="profileForm.get('COUNTRY').get('city')"
                 [status]="
-                  profileForm.get('birthDate').dirty
-                    ? profileForm.get('birthDate').invalid
+                profileForm.get('COUNTRY').get('city').dirty
+                    ? profileForm.get('COUNTRY').get('city').invalid
                       ? 'danger'
                       : 'primary'
                     : 'basic'
                 "
                 [required]=""
                 [attr.aria-invalid]="
-                  profileForm.get('birthDate').invalid &&
-                  profileForm.get('birthDate').touched
+                profileForm.get('COUNTRY').get('city').invalid &&
+                profileForm.get('COUNTRY').get('city').touched
                     ? true
                     : null
                 "
               />
               <ng-container
                 *ngIf="
-                  profileForm.get('birthDate').invalid &&
-                  profileForm.get('birthDate').touched
-                "
-              >
-                <p
-                  class="caption status-danger"
-                  *ngIf="profileForm.get('birthDate').hasError('required')"
-                >
-                  Date of birth is required!
-                </p>
-              </ng-container>
-            </div>
-          </div>
-          <div class="wrapper c3">
-            <div class="form-group form-control-group">
-              <label class="label" for="input-username">Gender:</label>
-
-              <ng-container
-                *ngIf="
-                  profileForm.get('gender').invalid &&
-                  profileForm.get('gender').touched
+                profileForm.get('COUNTRY').get('city').invalid &&
+                profileForm.get('COUNTRY').get('city').touched
                 "
               >
                 <span
                   class="caption status-danger"
-                  *ngIf="profileForm.get('gender').hasError('required')"
+                  *ngIf="profileForm.get('COUNTRY').get('city').hasError('required')"
                 >
-                  Gender is required!
+                  City is required!
                 </span>
               </ng-container>
             </div>
+          </ng-container>
+          <ng-container *ngIf="activeIndex == 2">
             <div class="form-group form-control-group">
               <label class="label" for="input-height">Height:</label>
               <input
@@ -173,31 +189,31 @@
                 id="input-height"
                 placeholder="Height"
                 autofocus
-                formControlName="height"
+                [formControl]="profileForm.get('HEIGHT').get('height')"
                 [status]="
-                  profileForm.get('height').dirty
-                    ? profileForm.get('height').invalid
+                  profileForm.get('HEIGHT').get('height').dirty
+                    ? profileForm.get('HEIGHT').get('height').invalid
                       ? 'danger'
                       : 'primary'
                     : 'basic'
                 "
                 [required]=""
                 [attr.aria-invalid]="
-                  profileForm.get('height').invalid &&
-                  profileForm.get('height').touched
+                  profileForm.get('HEIGHT').get('height').invalid &&
+                  profileForm.get('HEIGHT').get('height').touched
                     ? true
                     : null
                 "
               />
               <ng-container
                 *ngIf="
-                  profileForm.get('height').invalid &&
-                  profileForm.get('height').touched
+                  profileForm.get('HEIGHT').get('height').invalid &&
+                  profileForm.get('HEIGHT').get('height').touched
                 "
               >
                 <span
                   class="caption status-danger"
-                  *ngIf="profileForm.get('height').hasError('required')"
+                  *ngIf="profileForm.get('HEIGHT').get('height').hasError('required')"
                 >
                   Height is required!
                 </span>
@@ -210,44 +226,260 @@
                 fullWidth
                 name="weight"
                 id="input-weight"
-                placeholder="weight"
+                placeholder="Weight"
                 autofocus
-                formControlName="weight"
+                [formControl]="profileForm.get('HEIGHT').get('weight')"
                 [status]="
-                  profileForm.get('weight')?.dirty
-                    ? profileForm.get('weight').invalid
+                  profileForm.get('HEIGHT').get('weight')?.dirty
+                    ? profileForm.get('HEIGHT').get('weight').invalid
                       ? 'danger'
                       : 'primary'
                     : 'basic'
                 "
                 [required]=""
                 [attr.aria-invalid]="
-                  profileForm.get('weight').invalid &&
-                  profileForm.get('weight').touched
+                  profileForm.get('HEIGHT').get('weight').invalid &&
+                  profileForm.get('HEIGHT').get('weight').touched
                     ? true
                     : null
                 "
               />
               <ng-container
                 *ngIf="
-                  profileForm.get('weight').invalid &&
-                  profileForm.get('weight').touched
+                  profileForm.get('HEIGHT').get('weight').invalid &&
+                  profileForm.get('HEIGHT').get('weight').touched
                 "
               >
-                <p
+                <span
                   class="caption status-danger"
-                  *ngIf="profileForm.get('weight').hasError('required')"
+                  *ngIf="profileForm.get('HEIGHT').get('weight').hasError('required')"
                 >
                   Weight is required!
-                </p>
+                </span>
               </ng-container>
             </div>
-          </div>
-          <div class="wrapper"></div>
+          </ng-container>
+          <ng-container *ngIf="activeIndex == 3">
+            <div class="wrapper c1">
+              <div class="form-group form-control-group">
+                <label class="label" for="input-jobType">Job Type:</label>
 
-          <div class="buttons-container">
-            <button nbButton status="primary" [disabled]="!form.valid">
-              Set Profile
+                <p-dropdown
+                  [options]="jobs"
+                  [formControl]="profileForm.get('JOBTYPE').get('jobType')"
+                  placeholder="Job Type"
+                  optionLabel="name"
+                  [showClear]="true"
+                  [required]=""
+                  [attr.aria-invalid]="
+                    profileForm.get('JOBTYPE').get('jobType').invalid &&
+                    profileForm.get('JOBTYPE').get('jobType').touched
+                      ? true
+                      : null
+                  "
+                ></p-dropdown>
+
+                <ng-container
+                  *ngIf="
+                    profileForm.get('JOBTYPE').get('jobType').invalid &&
+                    profileForm.get('JOBTYPE').get('jobType').touched
+                  "
+                >
+                  <span
+                    class="caption status-danger"
+                    *ngIf="profileForm.get('JOBTYPE').get('jobType').hasError('required')"
+                  >
+                    Job Type is required!
+                  </span>
+                </ng-container>
+              </div>
+              <div class="form-group form-control-group">
+                <label class="label" for="input-maritalStatus"
+                  >Marital Status:</label
+                >
+                <p-dropdown
+                  [options]="martialStatuses"
+                  [formControl]="profileForm.get('JOBTYPE').get('maritalStatus')"
+                  placeholder="Marital Status"
+                  optionLabel="name"
+                  [showClear]="true"
+                  [required]=""
+                  [attr.aria-invalid]="
+                    profileForm.get('JOBTYPE').get('maritalStatus').invalid &&
+                    profileForm.get('JOBTYPE').get('maritalStatus').touched
+                      ? true
+                      : null
+                  "
+                ></p-dropdown>
+
+                <ng-container
+                  *ngIf="
+                    profileForm.get('JOBTYPE').get('maritalStatus').invalid &&
+                    profileForm.get('JOBTYPE').get('maritalStatus').touched
+                  "
+                >
+                  <span
+                    class="caption status-danger"
+                    *ngIf="
+                      profileForm.get('JOBTYPE').get('maritalStatus').hasError('required')
+                    "
+                  >
+                    Marital Status is required!
+                  </span>
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="activeIndex == 4">
+            <div class="wrapper c3">
+              <div class="form-group form-control-group">
+                <label class="label" for="input-havingKids">Having Kids:</label>
+                <div class="d-flex">
+                  <div class="radio-toolbar">
+                    <div class="form-group form-control-group radio">
+                      <input
+                        type="radio"
+                        id="radio1"
+                        name="havingKids"
+                        value="1"
+                        [formControl]="profileForm.get('HAVINGKIDS').get('havingKids')"
+                      />
+                      <label class="yes" for="radio1">Yes</label>
+                    </div>
+                    <div class="form-group form-control-group radio">
+                      <input
+                        type="radio"
+                        id="radio2"
+                        name="havingKids"
+                        [formControl]="profileForm.get('HAVINGKIDS').get('havingKids')"
+                        value="0"
+                      />
+                      <label class="no" for="radio2">No</label>
+                    </div>
+                  </div>
+                </div>
+                <ng-container
+                  *ngIf="
+                    profileForm.get('HAVINGKIDS').get('havingKids').invalid &&
+                    profileForm.get('HAVINGKIDS').get('havingKids').touched
+                  "
+                >
+                  <span
+                    class="caption status-danger"
+                    *ngIf="profileForm.get('HAVINGKIDS').get('havingKids').hasError('required')"
+                  >
+                    Having Kids is required!
+                  </span>
+                </ng-container>
+              </div>
+              <div class="form-group form-control-group">
+                <label class="label" for="input-alcoholic">Alcoholic:</label>
+                <div class="d-flex">
+                  <div class="radio-toolbar">
+                    <div class="form-group form-control-group radio">
+                      <input
+                        type="radio"
+                        id="radio3"
+                        name="alcoholic"
+                        value="1"
+                        [formControl]="profileForm.get('HAVINGKIDS').get('alcoholic')"
+                      />
+                      <label class="yes" for="radio3">Yes</label>
+                    </div>
+                    <div class="form-group form-control-group radio">
+                      <input
+                        type="radio"
+                        id="radio4"
+                        name="alcoholic"
+                        [formControl]="profileForm.get('HAVINGKIDS').get('alcoholic')"
+                        value="0"
+                      />
+                      <label class="no" for="radio4">No</label>
+                    </div>
+                  </div>
+                </div>
+                <ng-container
+                  *ngIf="
+                    profileForm.get('HAVINGKIDS').get('alcoholic').invalid &&
+                    profileForm.get('HAVINGKIDS').get('alcoholic').touched
+                  "
+                >
+                  <span
+                    class="caption status-danger"
+                    *ngIf="profileForm.get('HAVINGKIDS').get('alcoholic').hasError('required')"
+                  >
+                    Alcoholic is required!
+                  </span>
+                </ng-container>
+              </div>
+              <div class="form-group form-control-group">
+                <label class="label" for="input-smocking">Smoking:</label>
+                <div class="d-flex">
+                  <div class="radio-toolbar">
+                    <div class="form-group form-control-group radio">
+                      <input
+                        type="radio"
+                        id="radio5"
+                        name="smocking"
+                        value="1"
+                        [formControl]="profileForm.get('HAVINGKIDS').get('smocking')"
+                      />
+                      <label class="yes" for="radio5">Yes</label>
+                    </div>
+                    <div class="form-group form-control-group radio">
+                      <input
+                        type="radio"
+                        id="radio6"
+                        name="smocking"
+                        [formControl]="profileForm.get('HAVINGKIDS').get('smocking')"
+                        value="0"
+                      />
+                      <label class="no" for="radio6">No</label>
+                    </div>
+                  </div>
+                </div>
+                <ng-container
+                  *ngIf="
+                    profileForm.get('HAVINGKIDS').get('smocking').invalid &&
+                    profileForm.get('HAVINGKIDS').get('smocking').touched
+                  "
+                >
+                  <span
+                    class="caption status-danger"
+                    *ngIf="profileForm.get('HAVINGKIDS').get('smocking').hasError('required')"
+                  >
+                    Smoking is required!
+                  </span>
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
+
+          <div
+            class="buttons-container"
+            [style.justify-content]="
+              activeIndex == 0 ? 'flex-end' : 'space-between'
+            "
+          >
+            <button
+              nbButton
+              status="primary"
+              [style.display]="activeIndex == 0 ? 'none' : 'block'"
+              (click)="previous()"
+            >
+              Back
+            </button>
+            <button
+              nbButton
+              status="primary"
+              (click)="
+                activeIndex == wizardItems.length - 1 ? setProfile() : next()
+              "
+            >
+              {{
+                activeIndex == wizardItems.length - 1 ? "Set Profile" : "Next"
+              }}
             </button>
           </div>
         </form>
@@ -255,6 +487,3 @@
     </p-card>
   </div>
 </div>
-
-<!-- </nb-layout-column>
-        </nb-layout> -->

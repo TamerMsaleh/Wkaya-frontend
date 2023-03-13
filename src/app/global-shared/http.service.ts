@@ -6,7 +6,6 @@ import { TokenService } from './token.service';
 
 const httpOptions = {
   headers: new HttpHeaders(),
-  withCredentials: false,
 };
 
 @Injectable({

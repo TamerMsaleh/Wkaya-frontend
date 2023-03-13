@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NbAuthService, NbLoginComponent } from '@nebular/auth';
 import { NbLayoutDirectionService } from '@nebular/theme';
 import { tap } from 'rxjs';
+import { ToasterPosition, ToasterService } from 'src/app/global-shared/toaster.service';
 import { TokenService } from 'src/app/global-shared/token.service';
 import { AuthService } from '../../auth.service';
 
@@ -14,8 +15,8 @@ import { AuthService } from '../../auth.service';
 })
 export class LoginComponent extends NbLoginComponent{
   loginForm: FormGroup;
-  minlength = 8;
-  maxlength = 16
+  minlength = 6;
+  maxlength = 12;
   constructor(
     service: NbAuthService,
     cd: ChangeDetectorRef,
@@ -23,7 +24,8 @@ export class LoginComponent extends NbLoginComponent{
     private authService: AuthService,
     private directionService: NbLayoutDirectionService,
     private tokenService: TokenService,
-    private fb: FormBuilder
+    private toasterService: ToasterService,
+    private fb: FormBuilder,
   ) {
     super(service, {}, cd, router);
 
@@ -41,14 +43,45 @@ export class LoginComponent extends NbLoginComponent{
         .pipe(
           tap({
             next: (resp: any) => {
-              this.tokenService.setToken(resp.data.token);
-              this.tokenService.setUserInfo(JSON.stringify(resp.data.user));
-              this.setUserPerferences(resp.data.user.id);
+              console.log(resp)
+              this.tokenService.setToken(resp.token);
+              this.tokenService.setUserInfo(JSON.stringify(resp.profileCompleted));
               this.tokenService.setUserLanguage(
                 this.directionService.getDirection() === 'ltr' ? 'en' : 'ar'
               );
+              this.toasterService.makeToast(
+                'success',
+                'Login',
+                'You have logged in successfully',
+                {
+                  positionClass: ToasterPosition.topRight,
+                  toastClass: 'oneLine',
+                  closeButton: true,
+                }
+              );
+              if(resp.profileCompleted){
+                this.router.navigate(['/pages/dashboard'])
+              }else {
+                this.router.navigate(['/profile'])
+
+              }
             },
-            error: (err: any) => {},
+            error: (err: any) => {
+              if (err.error.error.key == 'login.failed') {
+
+              this.toasterService.makeToast(
+                'error',
+                'Login',
+                'Please check your email or password',
+                {
+                  positionClass: ToasterPosition.topRight,
+                  toastClass: 'oneLine',
+                  closeButton: true,
+                  timeOut: 100000
+                }
+              );
+              }
+            },
           })
         )
         .subscribe();

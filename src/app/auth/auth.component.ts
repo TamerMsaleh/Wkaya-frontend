@@ -7,8 +7,8 @@ import { TokenService } from '../global-shared/token.service';
 })
 export class AuthComponent {
 	constructor(private router: Router, private tokenService: TokenService) {
-		if (this.tokenService.getToken()) {
-			this.router.navigateByUrl('/login');
-		}
+		// if (this.tokenService.getToken()) {
+		// 	this.router.navigateByUrl('/signup');
+		// }
 	}
 }

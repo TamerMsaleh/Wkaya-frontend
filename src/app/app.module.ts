@@ -23,7 +23,7 @@ import {
 } from '@nebular/theme';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { environment } from 'src/assets/environments/environment';
+import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
@@ -42,7 +42,6 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'corporate' }),
     NbLayoutModule,
-    NbLayoutModule,
     NbSidebarModule, // NbSidebarModule.forRoot(), //if this is your app.module
     NbButtonModule,
     NbEvaIconsModule,
@@ -59,7 +58,7 @@ import { ToastrModule } from 'ngx-toastr';
     AuthModule,
     PagesModule,
     RouterModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [
     NbSidebarService,

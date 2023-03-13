@@ -1,6 +1,62 @@
-nb-layout.global-container {
-      nb-layout-header {
+nb-layout.guest-container {
+  .scrollable-container {
+    background: #edf1f7 !important;
+
+    nb-layout-header {
+      display: flex;
+
+      nav {
+        display: flex;
+        flex: 1 0 33.3%;
+        width: 100%;
+        align-items: center;
+        padding: 0;
+        background-color: white !important;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
 
+        wky-landing-header {
+          display: flex;
+          width: 50%;
+          height: 100%;
+          justify-content: center;
+          align-items: center;
+        }
+        wky-logo {
+          display: flex;
+          width: 25%;
+          height: 100%;
+          justify-content: center;
+          align-items: center;
+        }
+        wky-menu {
+          display: flex;
+          width: 25%;
+          height: 100%;
+          justify-content: center;
+          align-items: center;
+        }
+        // justify-content: center !important;
       }
+    }
+    .layout {
+      .layout-container {
+        .content {
+          margin-left: unset !important;
+          margin-right: unset !important;
+          flex: 1 !important;
+          width: 100%;
+          .columns {
+            nb-layout-column {
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  nb-layout-footer {
+    nav {
+      background-color: #edf1f7 !important;
+    }
+  }
 }

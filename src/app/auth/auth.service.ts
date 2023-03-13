@@ -21,7 +21,9 @@ export class AuthService {
   profile(userProfile){
     return this.http.post(userProfile,'profile');
   }
-
+  getProfile(){
+    return this.http.get('profile');
+  }
   isAuthenticated() {
     return !!this.tokenService.getToken();
   }

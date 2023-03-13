@@ -1,8 +1,37 @@
-@use 'themes' as *;
+@use "themes" as *;
 
-@use '@nebular/theme/styles/globals' as *;
+@use "@nebular/theme/styles/globals" as *;
 
 @include nb-install() {
   @include nb-theme-global();
-};
+}
+@import "@nebular/theme/styles/theming";
+
+@import "ngx-toastr/toastr";
 /* You can add global styles to this file, and also import other style files */
+
+.p-datepicker-touch-ui,
+.p-calendar .p-datepicker-touch-ui {
+  min-width: 100px !important;
+}
+.d-flex {
+  display: flex !important;
+}
+
+// .overlay-container {
+#toast-container {
+   padding: 2px;
+  .oneLine {
+    background-image: unset !important;
+    height: 70px;
+    padding: 10px;
+    color: white;
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+    & .toaster-msg {
+      padding: 4px 0;
+      height: 65px;
+    }
+  }
+}

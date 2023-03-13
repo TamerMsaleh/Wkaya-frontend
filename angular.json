@@ -39,8 +39,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/avl/src/environments/environment.ts",
-                  "with": "apps/avl/src/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ],
               "optimization": {
@@ -71,46 +71,12 @@
                 }
               ]
             },
-            "stage": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/avl/src/environments/environment.ts",
-                  "with": "apps/avl/src/environments/environment.stage.ts"
-                }
-              ],
-              "optimization": {
-                "scripts": true,
-                "styles": {
-                  "minify": true,
-                  "inlineCritical": false
-                },
-                "fonts": true
-              },
-              "aot": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "15mb",
-                  "maximumError": "30mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2mb",
-                  "maximumError": "4mb"
-                }
-              ]
-            },
+
             "testing": {
               "fileReplacements": [
                 {
-                  "replace": "apps/avl/src/environments/environment.ts",
-                  "with": "apps/avl/src/environments/environment.testing.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.testing.ts"
                 }
               ],
               "optimization": {
@@ -141,41 +107,7 @@
                 }
               ]
             },
-            "uat": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/avl/src/environments/environment.ts",
-                  "with": "apps/avl/src/environments/environment.uat.ts"
-                }
-              ],
-              "optimization": {
-                "scripts": true,
-                "styles": {
-                  "minify": true,
-                  "inlineCritical": false
-                },
-                "fonts": true
-              },
-              "aot": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "15mb",
-                  "maximumError": "30mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2mb",
-                  "maximumError": "4mb"
-                }
-              ]
-            },
+
             "development": {
               "aot": true,
               "optimization": false,

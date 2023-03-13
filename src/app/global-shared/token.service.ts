@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, interval } from 'rxjs';
 import { map, distinctUntilChanged, tap } from 'rxjs/operators';
-
+import jwt_decode from "jwt-decode";
 interface UserData {
   Email: string;
 }
@@ -11,35 +11,37 @@ interface UserData {
   providedIn: 'root',
 })
 export class TokenService {
-
   private token: string;
   private accessToken = 'accessToken';
   private expiresIn = 'expiresIn';
   private user = 'user';
+  private tokenInfo = 'tokentInfo'
   isUserAuth: boolean;
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   /**
    * @param {string} token  The target to process
    * @returns Just save the token into cookies or session
    */
   setToken(token: string): void {
+    const tokenDecode: any = jwt_decode(token);
     localStorage.setItem(this.accessToken, token);
+    localStorage.setItem(this.tokenInfo, JSON.stringify(tokenDecode));
   }
 
   /**
-     * @param {string} user  The target to process
-     * @returns Just save the user info into cookies or session
-     */
+   * @param {string} user  The target to process
+   * @returns Just save the user info into cookies or session
+   */
   setUserInfo(user: any): void {
     localStorage.setItem(this.user, user);
   }
 
-  setUserLanguage(lang: string){
-    localStorage.setItem('lang',lang);
+  setUserLanguage(lang: string) {
+    localStorage.setItem('lang', lang);
   }
 
-  getUserLanguage(){
+  getUserLanguage() {
     const lang = localStorage.getItem('lang');
     return lang;
   }
@@ -58,7 +60,6 @@ export class TokenService {
     this.token = localStorage.getItem(this.accessToken);
     return this.token;
   }
-
 
   /**
    * @param {number} token  token expiration seconds
@@ -84,12 +85,11 @@ export class TokenService {
   /**
    * @returns clear all saved info
    */
-    clear(): void {
+  clear(): void {
     this.token = null;
     localStorage.removeItem(this.accessToken);
     localStorage.removeItem(this.expiresIn);
     localStorage.removeItem(this.user);
-
   }
 
   /**
@@ -97,7 +97,7 @@ export class TokenService {
    */
   logout(): void {
     this.clear();
-    this.router.navigateByUrl('/auth/login')
+    this.router.navigateByUrl('/auth/login');
   }
 
   /**
@@ -118,5 +118,4 @@ export class TokenService {
       return false;
     }
   }
-
 }

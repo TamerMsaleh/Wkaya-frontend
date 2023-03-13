@@ -1,7 +1,14 @@
-  <nb-layout class="global-container">
-    <nb-layout-header
-      ><wky-header [companyTitle]="'wkaya'"></wky-header
-    ></nb-layout-header>
+<ng-container
+  *ngTemplateOutlet="token.isAuthenticated() ? loggedIn : guest"
+></ng-container>
+<ng-template #guest>
+  <nb-layout class="guest-container" [center]="true" [withScroll]="true">
+    <nb-layout-header fixed>
+      <wky-menu></wky-menu>
+      <wky-landing-header [companyTitle]="'wkaya'"></wky-landing-header>
+      <wky-logo></wky-logo>
+    </nb-layout-header>
+    <wky-landing-page></wky-landing-page>
 
     <!-- <nb-sidebar>Sidebar Content</nb-sidebar> -->
 
@@ -9,4 +16,17 @@
       <!-- Page Content <button nbButton>Hello World</button> -->
       <router-outlet></router-outlet>
     </nb-layout-column>
+    <!-- <nb-layout-footer> </nb-layout-footer> -->
   </nb-layout>
+</ng-template>
+<ng-template #loggedIn>
+  <nb-layout class="global-container">
+    <nb-layout-header
+      ><wky-header [companyTitle]="'wkaya'"></wky-header
+    ></nb-layout-header>
+    <nb-layout-column>
+      <!-- Page Content <button nbButton>Hello World</button> -->
+      <router-outlet></router-outlet>
+    </nb-layout-column>
+  </nb-layout>
+</ng-template>

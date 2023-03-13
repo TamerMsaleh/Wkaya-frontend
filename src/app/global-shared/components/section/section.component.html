@@ -1,0 +1,51 @@
+<section [id]="id">
+  <div class="intro-container">
+    <div class="text-container">
+      <div class="upper">
+        <h1>Your property is your wealth. Access it today.</h1>
+      </div>
+      <div class="middle">
+        <span>
+          With MNZL, you can protect your property ownership, and transform it
+          into a digital wallet that gives you access to financing at low cost,
+          all from the comfort of your home.
+        </span>
+      </div>
+      <div class="lower">
+        <a routerLink="/signup" *ngIf="id == 'intro'">
+          <div>
+            <span>
+              <button
+                pButton
+                type="button"
+                icon="pi pi-arrow-down"
+                class="p-button-raised p-button-rounded"
+                (click)="scrollToView()"
+              ></button>
+            </span>
+            <span> </span>
+          </div>
+        </a>
+        <a routerLink="/signup" *ngIf="id == 'signup'">
+          <div>
+            <span>
+              <button
+                pButton
+                type="button"
+                class="p-button-raised p-button-rounded"
+                (click)="scrollToView()"
+                routerLink="/signup"
+              >
+                Sign Up !
+              </button>
+            </span>
+            <span> </span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="image-container">
+      <img src="assets/images/app_full.webp" alt="" />
+    </div>
+  </div>
+</section>
