@@ -6,7 +6,7 @@ section {
     flex-wrap: wrap;
     height: 100%;
     width: 100%;
-    padding: 64px 0;
+    padding: 64px 12px;
 
     .image-container {
       display: flex;
@@ -14,7 +14,7 @@ section {
       height: 100%;
       padding: 0 20px;
       // border-radius: 10px;
-      border-bottom-left-radius: 10px;
+      border-radius: 10px;
       background-color: white;
       img {
         width: 100%;
