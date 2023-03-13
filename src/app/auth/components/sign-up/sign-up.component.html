@@ -108,9 +108,16 @@
                   >
                 </div> -->
           <div class="buttons-container">
-            <button nbButton status="primary" [disabled]="!form.valid">
-              Sign Up
-            </button>
+            <div class="submit-btn">
+              <button nbButton status="primary" [disabled]="!form.valid">
+                Sign Up
+              </button>
+            </div>
+            <div class="login-here">
+              <h6>
+                if you already registerd, <a routerLink="/login">Login here </a>
+              </h6>
+            </div>
           </div>
         </form>
       </section>

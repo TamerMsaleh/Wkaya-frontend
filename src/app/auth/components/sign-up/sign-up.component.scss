@@ -19,9 +19,9 @@
             justify-content: center;
             align-items: center;
           }
-          .form-control-group{
+          .form-control-group {
             padding-bottom: 12px;
-            label{
+            label {
               display: flex;
               padding-bottom: 8px;
             }
@@ -33,23 +33,43 @@
       margin-top: 12px;
       display: flex;
       justify-content: flex-end;
+      flex-direction: column;
+      .submit-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .login-here {
+        height: 30px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 8px;
+        h6 {
+          font-size: 12px;
+          a {
+            font-size: 13px;
+            text-decoration: unset;
+          }
+        }
+      }
     }
   }
 }
-  .toast-container {
-    .one-line{
-      background-image: unset !important;
-      height: 70px;
-      padding: 10px;
-      color: white;
-      &:not(:last-child){
-        margin-bottom: 20px;
-      }
-      .toast-message {
-        padding: 8px;
-      }
+.toast-container {
+  .one-line {
+    background-image: unset !important;
+    height: 70px;
+    padding: 10px;
+    color: white;
+    &:not(:last-child) {
+      margin-bottom: 20px;
     }
-    .toast-* {
-
+    .toast-message {
+      padding: 8px;
     }
   }
+  .toast-* {
+  }
+}
