@@ -1,1 +1,9 @@
-
+wky-section {
+  :not(:first-child) {
+    .section {
+      .intro-container {
+        padding: 32px;
+      }
+    }
+  }
+}
