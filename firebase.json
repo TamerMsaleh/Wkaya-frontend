@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "public": "dist/wakya-frontend",
+    "site":"wkaya",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/dist/wakya-frontend/index.html"
+      }
+    ]
+  }
+}

@@ -34,6 +34,8 @@ import { HttpService } from './global-shared/http.service';
 import { Global } from './global-shared/models/global';
 import { Settings } from './global-shared/models/settings';
 import { ToastrModule } from 'ngx-toastr';
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -58,7 +60,8 @@ import { ToastrModule } from 'ngx-toastr';
     AuthModule,
     PagesModule,
     RouterModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
   ],
   providers: [
     NbSidebarService,
