@@ -10,7 +10,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/dist/wakya-frontend/index.html"
+        "destination": "/index.html"
       }
     ]
   }
