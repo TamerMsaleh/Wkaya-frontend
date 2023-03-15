@@ -18,7 +18,20 @@ import { MenuService } from './menu.service';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-  items: MenuItem[];
+  items: MenuItem[] = [
+    {
+      label: 'Home Page',
+      routerLink: '/auth/landing',
+    },
+    {
+      label: 'Login',
+      routerLink: '/auth/login',
+    },
+    {
+      label: 'Register',
+      routerLink: '/auth/register',
+    },
+  ];
   lang = false;
   /**
    *
@@ -46,21 +59,7 @@ export class MenuComponent implements OnInit {
         break;
       }
     }
-    this.items = [
-      {
-        label: 'Home Page',
-        routerLink: '/auth/landing',
-        visible: !window.location.href.includes('/landing'),
-      },
-      {
-        label: 'Login',
-        routerLink: '/auth/login',
-      },
-      {
-        label: 'Register',
-        routerLink: '/auth/register',
-      },
-    ];
+
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (event.url.includes('/landing')) {
