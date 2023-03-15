@@ -24,9 +24,9 @@ export class TokenService {
    * @returns Just save the token into cookies or session
    */
   setToken(token: string): void {
-    const tokenDecode: any = jwt_decode(token);
+    // const tokenDecode: any = jwt_decode(token);
     localStorage.setItem(this.accessToken, token);
-    localStorage.setItem(this.tokenInfo, JSON.stringify(tokenDecode));
+    // localStorage.setItem(this.tokenInfo, JSON.stringify(token));
   }
 
   /**

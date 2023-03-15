@@ -5,13 +5,20 @@
     <p-card>
       <ng-template pTemplate="header">
         <div>
-          <h4><b>Wkaya Login</b></h4>
+          <h4>
+            <b>{{ 'login.header.title' | translate }}</b>
+          </h4>
         </div>
       </ng-template>
       <section class="login-form">
-        <form  #form="ngForm" (ngSubmit)="login()" [formGroup]="loginForm" aria-labelledby="title">
+        <form
+          #form="ngForm"
+          (ngSubmit)="login()"
+          [formGroup]="loginForm"
+          aria-labelledby="title"
+        >
           <div class="form-group form-control-group">
-            <label class="label" for="input-username">Email:</label>
+            <label class="label" for="input-username">{{ 'login.form.email.title' | translate }}:</label>
             <!-- pattern=".+@.+\..+" -->
             <input
               nbInput
@@ -19,7 +26,7 @@
               name="email"
               formControlName="email"
               id="input-username"
-              placeholder="Email"
+              placeholder="{{ 'login.form.email.placeholder' | translate }}"
               autofocus
               [status]="
                 loginForm.get('email').dirty
@@ -30,64 +37,78 @@
               "
               [required]=""
               [attr.aria-invalid]="
-                loginForm.get('email').invalid && loginForm.get('email').touched ? true : null
+                loginForm.get('email').invalid && loginForm.get('email').touched
+                  ? true
+                  : null
               "
             />
-            <ng-container *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched">
+            <ng-container
+              *ngIf="
+                loginForm.get('email').invalid && loginForm.get('email').touched
+              "
+            >
               <span
                 class="caption status-danger"
                 *ngIf="loginForm.get('email').hasError('required')"
               >
-                Email is required!
+              {{ 'login.form.email.required' | translate }}
               </span>
               <span
                 class="caption status-danger"
                 *ngIf="loginForm.get('email').hasError('email')"
               >
-                Email should be valid!
+              {{ 'login.form.email.valid' | translate }}
               </span>
             </ng-container>
           </div>
 
           <div class="form-group form-control-group">
-            <label class="label" for="input-password">Password:</label>
+            <label class="label" for="input-password">  {{ 'login.form.password.title' | translate }}:</label>
             <input
               nbInput
               fullWidth
               name="password"
               type="password"
               id="input-password"
-              placeholder="Password"
+              placeholder=" {{ 'login.form.password.placeholder' | translate }}"
               formControlName="password"
               [status]="
-              loginForm.get('password').dirty
+                loginForm.get('password').dirty
                   ? loginForm.get('password').invalid
                     ? 'danger'
                     : 'primary'
                   : 'basic'
               "
-
               [attr.aria-invalid]="
-                loginForm.get('password').invalid && loginForm.get('password').touched ? true : null
+                loginForm.get('password').invalid &&
+                loginForm.get('password').touched
+                  ? true
+                  : null
               "
             />
-            <ng-container *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+            <ng-container
+              *ngIf="
+                loginForm.get('password').invalid &&
+                loginForm.get('password').touched
+              "
+            >
               <span
                 class="caption status-danger"
                 *ngIf="loginForm.get('password').hasError('required')"
               >
-                Password is required!
+                {{ "login.form.password.required" | translate }}
               </span>
               <span
                 class="caption status-danger"
                 *ngIf="
-                loginForm.get('password').errors?.minlength || loginForm.get('password').hasError('maxlength')
+                  loginForm.get('password').errors?.minlength ||
+                  loginForm.get('password').hasError('maxlength')
                 "
               >
-                Password should contains from
-                {{ minlength }} to
-                {{ maxlength}}
-                characters
+                {{
+                  "login.form.password.length"
+                    | translate : { min: minlength, maxlength: maxlength }
+                }}
               </span>
             </ng-container>
           </div>
@@ -104,10 +125,10 @@
             <button
               nbButton
               status="primary"
-              [disabled]="submitted || !form.valid"
+              [disabled]="!form.valid"
               [class.btn-pulse]="submitted"
             >
-              Sign In
+              {{ "login.btnSubmit" | translate }}
             </button>
           </div>
         </form>

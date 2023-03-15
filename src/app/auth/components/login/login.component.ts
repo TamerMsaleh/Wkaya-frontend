@@ -4,7 +4,10 @@ import { Router } from '@angular/router';
 import { NbAuthService, NbLoginComponent } from '@nebular/auth';
 import { NbLayoutDirectionService } from '@nebular/theme';
 import { tap } from 'rxjs';
-import { ToasterPosition, ToasterService } from 'src/app/global-shared/toaster.service';
+import {
+  ToasterPosition,
+  ToasterService,
+} from 'src/app/global-shared/toaster.service';
 import { TokenService } from 'src/app/global-shared/token.service';
 import { AuthService } from '../../auth.service';
 
@@ -13,7 +16,7 @@ import { AuthService } from '../../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent extends NbLoginComponent{
+export class LoginComponent extends NbLoginComponent {
   loginForm: FormGroup;
   minlength = 6;
   maxlength = 12;
@@ -25,18 +28,21 @@ export class LoginComponent extends NbLoginComponent{
     private directionService: NbLayoutDirectionService,
     private tokenService: TokenService,
     private toasterService: ToasterService,
-    private fb: FormBuilder,
+    private fb: FormBuilder
   ) {
     super(service, {}, cd, router);
 
     this.loginForm = this.fb.group({
-      email: this.fb.control('',[Validators.email,Validators.required]),
-      password: this.fb.control('',[Validators.required, Validators.minLength(this.minlength), Validators.maxLength(this.maxlength)])
-
-    })
+      email: this.fb.control('', [Validators.email, Validators.required]),
+      password: this.fb.control('', [
+        Validators.required,
+        Validators.minLength(this.minlength),
+        Validators.maxLength(this.maxlength),
+      ]),
+    });
   }
 
-   override login() {
+  override login() {
     if (this.loginForm.valid) {
       this.authService
         .login(this.loginForm.value)
@@ -62,7 +68,7 @@ export class LoginComponent extends NbLoginComponent{
               if(resp.profileCompleted){
                 this.router.navigate(['/pages/dashboard'])
               }else {
-                this.router.navigate(['/profile'])
+                this.router.navigate(['/auth/profile'])
 
               }
             },
@@ -85,7 +91,8 @@ export class LoginComponent extends NbLoginComponent{
           })
         )
         .subscribe();
-    }else {
+
+    } else {
       this.loginForm.errors;
       this.loginForm.dirty;
     }

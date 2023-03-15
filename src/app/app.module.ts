@@ -50,6 +50,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     NbAuthModule.forRoot(),
     HttpClientModule,
     TranslateModule.forRoot({
+      defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
         useFactory: httpTranslateLoader,
@@ -57,8 +58,6 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
       },
     }),
     GlobalSharedModule,
-    AuthModule,
-    PagesModule,
     RouterModule,
     ToastrModule.forRoot(),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),

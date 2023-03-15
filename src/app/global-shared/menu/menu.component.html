@@ -1,1 +1,21 @@
-<p>menu works!</p>
+<div class="menu-container">
+  <div class="menu-list">
+    <p-tieredMenu #menu [model]="items" [popup]="true"></p-tieredMenu>
+    <button
+      #btn
+      type="button"
+      pButton
+      icon="pi pi-align-justify"
+      (click)="menu.toggle($event)"
+    ></button>
+  </div>
+  <div class="menu-lang">
+    <p-toggleButton
+      [(ngModel)]="lang"
+      onLabel="en"
+      offLabel="ar"
+      [style]="{ width: '5em' }"
+      (click)="setLang()"
+    ></p-toggleButton>
+  </div>
+</div>

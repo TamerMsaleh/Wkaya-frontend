@@ -44,7 +44,7 @@ export class SignUpComponent {
                   closeButton: true,
                 }
               );
-              this.router.navigate(['/login'])
+              this.router.navigate(['/auth/login'])
             },
             error: (err) => {
               console.log(err)

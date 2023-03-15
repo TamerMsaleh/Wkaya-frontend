@@ -29,6 +29,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { StepsModule } from 'primeng/steps';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { GlobalSharedModule } from '../global-shared/global-shared.module';
+import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   imports: [
     CommonModule,
@@ -54,7 +56,9 @@ import { GlobalSharedModule } from '../global-shared/global-shared.module';
     RadioButtonModule,
     DropdownModule,
     StepsModule,
-    GlobalSharedModule
+    GlobalSharedModule,
+    RouterModule,
+    TranslateModule
   ],
   declarations: [
     // ... here goes our new components

@@ -5,7 +5,9 @@
     <p-card>
       <ng-template pTemplate="header">
         <div>
-          <h4><b>Wkaya Sign Up</b></h4>
+          <h4>
+            <b>{{ "signup.header.title" | translate }}</b>
+          </h4>
         </div>
       </ng-template>
       <section>
@@ -16,7 +18,9 @@
           aria-labelledby="title"
         >
           <div class="form-group form-control-group">
-            <label class="label" for="input-password">Name:</label>
+            <label class="label" for="input-name"
+              >{{ "signup.form.name.title" | translate }}:</label
+            >
             <input
               nbInput
               fullWidth
@@ -24,7 +28,7 @@
               name="name"
               type="name"
               id="input-name"
-              placeholder="Name"
+              placeholder="{{ 'signup.form.name.placeholder' | translate }}"
               [status]="
                 signUpForm.get('name').dirty
                   ? signUpForm.get('name').invalid
@@ -48,19 +52,21 @@
                 class="caption status-danger"
                 *ngIf="signUpForm.get('name').hasError('required')"
               >
-                Name is required!
+                {{ "signup.form.name.required" | translate }}
               </span>
             </ng-container>
           </div>
           <div class="form-group form-control-group">
-            <label class="label" for="input-username">Email:</label>
+            <label class="label" for="input-email">
+              {{ "signup.form.email.title" | translate }}:</label
+            >
             <!-- pattern=".+@.+\..+" -->
             <input
               nbInput
               fullWidth
               name="email"
               id="input-username"
-              placeholder="Email"
+              placeholder="{{ 'signup.form.email.placeholder' | translate }}"
               autofocus
               formControlName="email"
               [status]="
@@ -88,13 +94,13 @@
                 class="caption status-danger"
                 *ngIf="signUpForm.get('email').hasError('email')"
               >
-                Email is required!
+              {{ 'signup.form.email.required' | translate }}
               </span>
               <span
                 class="caption status-danger"
                 *ngIf="signUpForm.get('email').hasError('email')"
               >
-                Email should be valid!
+              {{ 'signup.form.email.valid' | translate }}
               </span>
             </ng-container>
           </div>
@@ -110,12 +116,13 @@
           <div class="buttons-container">
             <div class="submit-btn">
               <button nbButton status="primary" [disabled]="!form.valid">
-                Sign Up
+                {{ 'signup.form.btnSubmit' | translate }}
               </button>
             </div>
             <div class="login-here">
               <h6>
-                if you already registerd, <a routerLink="/login">Login here </a>
+                {{ 'signup.form.btnTxt' | translate }}
+                <a routerLink="/auth/login"> {{ 'signup.form.loginHere' | translate }} </a>
               </h6>
             </div>
           </div>

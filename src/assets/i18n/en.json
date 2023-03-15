@@ -1,0 +1,49 @@
+{
+  "title":"Wkaya",
+  "common": {
+    "signup": "Sign Up !"
+  },
+  "login": {
+    "header": {
+      "title": "Wkaya Login"
+    },
+    "title": "Login",
+    "form": {
+      "email": {
+        "title": "E-mail Address",
+        "placeholder": "Enter Your E-mail Address",
+        "required": "E-mail is required !",
+        "valid": "Email should be valid!"
+      },
+      "password": {
+        "required": "Password is required!",
+        "length": "Password should contains from {{min}} to {{max}} characters",
+        "title": "Password",
+        "placeholder": "Enter Your Password"
+      }
+    },
+    "btnSubmit": "Login"
+  },
+  "signup": {
+    "header": {
+      "title": "Wkaya Sign Up"
+    },
+    "title": "Sign Up",
+    "form": {
+      "email": {
+        "title": "E-mail Address",
+        "placeholder": "Enter Your E-mail Address",
+        "required": "E-mail is required !",
+        "valid": "Email should be valid!"
+      },
+      "name": {
+        "required": "Password is required!",
+        "title": "Name",
+        "placeholder": "Enter Your Password"
+      },
+      "btnSubmit": "Sign Up",
+      "btnTxt":"If you already registerd,",
+      "loginHere":"Login Here"
+    }
+  }
+}
