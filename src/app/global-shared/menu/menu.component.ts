@@ -8,6 +8,8 @@ import {
 import { NbLayoutDirection, NbLayoutDirectionService } from '@nebular/theme';
 import { TranslateService } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api';
+import { tap } from 'rxjs';
+import { TokenService } from '../token.service';
 import { MenuService } from './menu.service';
 
 @Component({
@@ -17,7 +19,7 @@ import { MenuService } from './menu.service';
 })
 export class MenuComponent implements OnInit {
   items: MenuItem[];
-  lang: string;
+  lang = false;
   /**
    *
    */
@@ -25,10 +27,25 @@ export class MenuComponent implements OnInit {
     private translate: TranslateService,
     private direction: NbLayoutDirectionService,
     private router: Router,
-    public menu: MenuService
+    public menu: MenuService,
+    public token: TokenService
   ) {}
   ngOnInit(): void {
-    console.log(window.location.href.includes('/landing'));
+    const userLang = this.token.getUserLanguage();
+    switch (userLang) {
+      case 'ar': {
+        this.direction.setDirection(NbLayoutDirection.RTL);
+        this.translate.use('ar');
+        this.lang = true;
+        break;
+      }
+      case 'en': {
+        this.direction.setDirection(NbLayoutDirection.LTR);
+        this.translate.use('en');
+        this.lang = false;
+        break;
+      }
+    }
     this.items = [
       {
         label: 'Home Page',
@@ -58,7 +75,6 @@ export class MenuComponent implements OnInit {
             },
           ];
         } else {
-          console.log('else');
           this.items = [
             {
               label: 'Home Page',
