@@ -20,9 +20,9 @@
         "length": "Password should contains from {{min}} to {{max}} characters",
         "title": "Password",
         "placeholder": "Enter Your Password"
-      }
-    },
-    "btnSubmit": "Login"
+      },
+      "btnSubmit": "Login"
+    }
   },
   "signup": {
     "header": {
